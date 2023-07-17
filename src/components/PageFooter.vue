@@ -2,9 +2,6 @@
 
 export default {
     name: "PageFooter",
-    props: {
-        text: String
-    },
     data() {
         return {
         }

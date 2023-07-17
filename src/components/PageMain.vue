@@ -1,10 +1,12 @@
 <script>
 import axios from "axios";
 
+import ProjectCard from './ProjectCard.vue'
+
 export default {
     name: "PageMain",
-    props: {
-        text: String
+    components: {
+        ProjectCard
     },
     data() {
         return {
@@ -39,14 +41,7 @@ export default {
     <main class="d-flex justify-content-center align-items-center">
         <div class="container">
             <div v-if="!isLoading" class="d-flex flex-wrap gap-3 p-1 py-4">
-                <div v-for="project in projects" class="card text-white bg-dark" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title text-uppercase">{{project.name}}</h5>
-                        <p class="card-text">
-                            {{project.description}}
-                        </p>
-                    </div>
-                </div>
+                <ProjectCard v-for="project in projects" :project="project" />
             </div>
             <div v-else class="text-white text-center">
                 <span class="h2">Loading...</span>
@@ -55,5 +50,4 @@ export default {
     </main>
 </template>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

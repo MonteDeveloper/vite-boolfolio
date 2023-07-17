@@ -2,9 +2,6 @@
 
 export default {
     name: "PageHeader",
-    props: {
-        text: String
-    },
     data() {
         return {
         }
