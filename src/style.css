@@ -1,0 +1,12 @@
+:root{
+  --headerFooterHeight: 100px;
+}
+
+header,footer{
+  height: var(--headerFooterHeight);
+}
+
+main{
+  min-height: calc(100vh - var(--headerFooterHeight) * 2);
+  background-color: #2d2a2e;
+}
