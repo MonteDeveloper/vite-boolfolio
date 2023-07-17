@@ -3,7 +3,7 @@
 export default {
     name: "ProjectCard",
     props: {
-        project: Array
+        project: Object
     },
     mounted() {
         console.log("Caricato il componente 'ProjectCard'.");
@@ -18,6 +18,15 @@ export default {
             <p class="card-text">
                 {{ project.description }}
             </p>
+            <div>
+
+                <hr v-if="project.type || project.technologies.length">
+                <p v-if="project.type">Type: {{ project.type.name }}</p>
+                <p v-if="project.technologies.length">
+                    Technologies:
+                    <span>{{ project.technologies.map(technology => technology.name).join(', ') }}</span>
+                </p>
+            </div>
         </div>
     </div>
 </template>
