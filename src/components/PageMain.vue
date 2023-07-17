@@ -74,10 +74,10 @@ export default {
                 <ProjectCard v-for="project in projects" :project="project" />
 
                 <div class="d-flex gap-1">
-                    <button class="btn btn-dark me-2" @click="getPostsPrevPage">Pagina precedente</button>
+                    <button class="btn btn-dark me-2" :class="{'disabled': currentPage == 1}" @click="getProjectsAtPage( currentPage - 1 )">Pagina precedente</button>
                     <button class="btn btn-dark" :class="{'disabled btn-outline-light': currentPage == pageNumber}" @click="getProjectsAtPage(pageNumber)" v-for="pageNumber in totalPages">{{
                         pageNumber }}</button>
-                    <button class="btn btn-dark ms-2" @click="getPostsNextPage">Pagina successiva</button>
+                    <button class="btn btn-dark ms-2" :class="{'disabled': currentPage == totalPages}" @click="getProjectsAtPage( currentPage + 1 )">Pagina successiva</button>
                 </div>
             </div>
             <div v-else class="text-white text-center">
