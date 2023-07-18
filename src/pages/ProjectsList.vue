@@ -1,10 +1,10 @@
 <script>
 import axios from "axios";
 
-import ProjectCard from './ProjectCard.vue'
+import ProjectCard from '../components/ProjectCard.vue'
 
 export default {
-    name: "PageMain",
+    name: "ProjectsList",
     components: {
         ProjectCard
     },
@@ -21,7 +21,7 @@ export default {
     mounted() {
         this.getProjectsAtFirstPage();
 
-        console.log("Caricato il componente 'PageMain'.");
+        console.log("Caricato il componente 'ProjectsList'.");
     },
     methods: {
         getProjectsAtFirstPage() {
