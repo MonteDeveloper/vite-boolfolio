@@ -13,7 +13,7 @@ export default {
 
 <template>
     <div class="container h-100 d-flex align-items-center">
-        <div class="card my-showCard w-100 text-white bg-dark overflow-hidden">
+        <div class="card w-100 text-white bg-dark overflow-hidden">
             <div class="row g-0 h-100">
                 <div class="col-md-4">
                     <img :src="project.image ? `http://localhost:8000/storage/${project.image}` : 'http://localhost:8000/storage/placeholders/placeholder.png'" class="img-fluid rounded-start" :alt="project.name">
@@ -43,4 +43,9 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img{
+    height: 100%;
+    object-fit: cover;
+}
+</style>
