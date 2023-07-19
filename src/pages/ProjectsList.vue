@@ -67,7 +67,7 @@ export default {
 
             <div v-if="!isLoading" class="d-flex flex-column align-items-center gap-2">
                 <!-- <ProjectCard v-for="project in projects" :project="project" /> -->
-                <div class="d-flex flex-wrap p-1 justify-content-center">
+                <div class="d-flex flex-wrap p-1 justify-content-center w-100">
                     <div v-for="project in projects" class="p-2 col-3">
                         <div class="card bg-dark text-white text-center h-100" style="width: 18rem;">
                             <img :src="project.image ? `http://localhost:8000/storage/${project.image}` : 'http://localhost:8000/storage/placeholders/placeholder.png'" class="card-img-top border-bottom" :alt="project.name">
