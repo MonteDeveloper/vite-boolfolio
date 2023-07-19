@@ -1,13 +1,8 @@
 <script>
 import axios from "axios";
 
-import ProjectCard from '../components/ProjectCard.vue'
-
 export default {
     name: "ProjectsList",
-    components: {
-        ProjectCard
-    },
     data() {
         return {
             apiUrl: "http://localhost:8000/api/",
@@ -70,14 +65,29 @@ export default {
     <main class="d-flex justify-content-center align-items-center">
         <div class="container">
 
-            <div v-if="!isLoading" class="d-flex flex-wrap gap-3 p-1 py-4 justify-content-center">
-                <ProjectCard v-for="project in projects" :project="project" />
+            <div v-if="!isLoading" class="d-flex flex-column align-items-center gap-2">
+                <!-- <ProjectCard v-for="project in projects" :project="project" /> -->
+                <div class="d-flex flex-wrap p-1 justify-content-center">
+                    <div v-for="project in projects" class="p-2 col-3">
+                        <div class="card bg-dark text-white text-center h-100" style="width: 18rem;">
+                            <img :src="project.image ? `http://localhost:8000/storage/${project.image}` : 'http://localhost:8000/storage/placeholders/placeholder.png'" class="card-img-top border-bottom" :alt="project.name">
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <h5 class="card-title text-uppercase py-1 h-100 d-flex align-items-center justify-content-center">{{ project.name }}</h5>
+                                <router-link :to="{ name: 'Single-Project', params: { id: project.id } }" class="btn btn-light">View More</router-link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="d-flex gap-1">
-                    <button class="btn btn-dark me-2" :class="{'disabled': currentPage == 1}" @click="getProjectsAtPage( currentPage - 1 )">Pagina precedente</button>
-                    <button class="btn btn-dark" :class="{'disabled btn-outline-light': currentPage == pageNumber}" @click="getProjectsAtPage(pageNumber)" v-for="pageNumber in totalPages">{{
-                        pageNumber }}</button>
-                    <button class="btn btn-dark ms-2" :class="{'disabled': currentPage == totalPages}" @click="getProjectsAtPage( currentPage + 1 )">Pagina successiva</button>
+                    <button class="btn btn-dark me-2" :class="{ 'disabled': currentPage == 1 }"
+                        @click="getProjectsAtPage(currentPage - 1)">Pagina precedente</button>
+                    <button class="btn btn-dark" :class="{ 'disabled btn-outline-light': currentPage == pageNumber }"
+                        @click="getProjectsAtPage(pageNumber)" v-for="pageNumber in totalPages">{{
+                            pageNumber }}</button>
+                    <button class="btn btn-dark ms-2" :class="{ 'disabled': currentPage == totalPages }"
+                        @click="getProjectsAtPage(currentPage + 1)">Pagina successiva</button>
                 </div>
             </div>
             <div v-else class="text-white text-center">
@@ -87,4 +97,9 @@ export default {
     </main>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+img {
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+</style>

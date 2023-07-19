@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import ProjectsList from './pages/ProjectsList.vue'
+import SingleProject from './pages/SingleProject.vue'
 import HomePage from './pages/HomePage.vue'
 
 const router = createRouter({
@@ -15,6 +16,11 @@ const router = createRouter({
             path: "/projects-list",
             name: "Projects",
             component: ProjectsList
+        },
+        {
+            path: "/projects-list/:id",
+            name: "Single-Project",
+            component: SingleProject
         }
     ]
 });

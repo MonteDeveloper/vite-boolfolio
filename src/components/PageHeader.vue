@@ -8,6 +8,14 @@ export default {
     },
     mounted() {
         console.log("Caricato il componente 'PageHeader'.");
+    },
+    methods: {
+        staticRoutes() {
+            return this.$router.getRoutes().filter(route => {
+                // esclude le rotte che contengono un parametro dinamico che si segna con i due punti
+                return !route.path.includes(':');
+            });
+        }
     }
 }
 </script>
@@ -23,8 +31,9 @@ export default {
                 </button>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav">
-                        <li class="nav-item" v-for="link in $router.getRoutes()" :key="link.to">
-                            <router-link :to="link.path" class="nav-link" :class="{ active: $route.path === link.path }">{{ link.name }}</router-link>
+                        <li class="nav-item" v-for="link in staticRoutes()">
+                            <router-link :to="{ name: link.name }" class="nav-link"
+                                :class="{ active: $route.path === link.path }">{{ link.name }}</router-link>
                         </li>
                     </ul>
                 </div>
